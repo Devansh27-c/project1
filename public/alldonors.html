@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/angular.min.js">   </script>
+    <script>
+        var moduleKuch=angular.module("myModule",[]);
+        moduleKuch.controller("myController",function($scope,$http)
+        {
+              
+                //------------------
+                $scope.jsonAry=[];
+
+            $scope.fetchDonorRecords=function()
+            {
+                $http.get("/fetchDonorRecords").then(fxSuccess,function(response){
+                        alert(JSON.stringify(response.data));
+                   });
+                   function fxSuccess(response)
+                   {
+                    //alert(JSON.stringify(response.data));
+                    $scope.jsonAry=response.data;
+                   }
+            }
+        
+        })
+
+    </script>
+</head>
+<body ng-app="myModule" ng-controller="myController" ng-init=fetchDonorRecords();>
+<hr>
+<center>
+    <table border="1" rules="all" width="700" height="500"> 
+        <tr bgcolor="blue">
+            <th>Sr.No</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Proof Type</th>
+            <th>Contact Timmings</th>
+            <th>Proof Pic</th>
+            <th>Profile Pic</th>
+
+        </tr>
+        <tr ng-repeat="obj in jsonAry">
+                <td>{{$index}}</td>
+                <td>{{obj.emailid}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.mobile}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.city}}</td>
+                <td>{{obj.prooftype}}</td>
+                <td>{{obj.timings}}</td>
+                <td>{{obj.proofpic}}</td>
+                <td>{{obj.profilepic}}</td>
+             
+
+        </tr>
+    </table>
+</center>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script>
+         function loadFile(ref) {
+            var image = document.getElementById('prev');
+            image.src = URL.createObjectURL(ref.files[0]);
+        }; 
+    </script>
+    <style>
+        h1{
+            font-weight: bolder;
+            margin-top: 30px;
+        }
+        #em{
+        margin-left: 100px;
+    }
+    #med{
+        float: inline-start;
+    }
+    #a{
+      display: flex;
+      flex-direction: row;
+    }
+    #ip{
+      margin-left: 100px;
+      margin-top: 24px;
+    }
+    b,#pic{
+      margin-top: 20px;
+      margin-left: 100px;
+    }
+    #prev{
+      margin-left: -40px;
+    }
+    #sp{
+      height: 150px;
+      margin-left: 100px;
+    
+    }
+    .input-group{
+      width: 800px;
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="uploads/66195124_1531903163613723_6185153755537735680_o-5ed0d0d5fc544ed2beb75c7e2c1519cc.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+          <span style="color:antiquewhite">Online Pharmacy </span>  
+          </a>
+        </div>
+      </nav>
+    <center>
+        <h1>Post Medicine To Donate</h1> </center>
+        <form class="row g-3" method="post">
+          <div>
+            <div class="col-md-6" id="em">
+              <label for="inputEmail4" class="form-label"></label>
+              <input type="email" class="form-control" name="txtEmail" required placeholder="Email" >
+            </div>
+          </div>
+          <div id="a">
+                <div class="col-md-2" id="em">
+                    <label for="inputEmail4" class="form-label"></label>
+                    <input type="text" class="form-control" name="txtMed" required placeholder="Medicine Name" ></div>
+                    <div class="col-md-2" id="ip">
+                        <select class="form-select" name="idp" aria-label="Default select example">
+                            <option selected>Select Packing Type</option>
+                            <option value="1">Blister Pack</option>
+                            <option value="2">Syrup</option>
+                            <option value="3">Syringe</option>
+                            <option value="4">Powder</option>
+                          </select>
+                      </div>
+                      <div class="col-md-2" id="em">
+                        <label for="inputEmail4" class="form-label"></label>
+                        <input type="text" class="form-control" name="txtQty" required placeholder="Quantity" ></div>
+                  
+                    </div>
+                    <div class="col-md-2" id="em">
+                      <label for="inputEmail4" class="form-label"></label>
+                      <input type="text" class="form-control" name="txtDate" required placeholder="Expiry Date" ></div>
+                      <div class="col-md-2" id="em">
+                        <label for="inputEmail4" class="form-label"></label>
+                        <input type="text" class="form-control" name="txtComp" required placeholder="Company Name" ></div>
+                     
+                       <b>Upload Medicine pic here</b> 
+                       <div class="row mt-2">
+                        <div class="col-md-4" id="pic">
+                            <input type="file" name="profilePic" onchange="loadFile(this);">
+                        </div>
+                        <div class="col-md-4" id="pr">
+                            <img id="prev" src="" width="80" height="80" alt="">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                      <div id="sp" class="input-group-text">Description</div>
+                      <textarea class="form-control" name="txtarea" aria-label="With textarea"></textarea>
+                    </div>
+                 <center>  <div> <button type="submit" formaction="/medicine-process" class="btn btn-success">Save</div></center>
+        </form>
+                      
+
+   
+   

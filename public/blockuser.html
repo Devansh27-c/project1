@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/angular.min.js">   </script>
+    <script>
+        var moduleKuch=angular.module("myModule",[]);
+        moduleKuch.controller("myController",function($scope,$http)
+        {
+              
+                //------------------
+                $scope.jsonAry=[];
+
+            $scope.fetchAllRecords=function()
+            {
+                $http.get("/fetchAllRecords").then(fxSuccess,function(response){
+                        alert(JSON.stringify(response.data));
+                   });
+                   function fxSuccess(response)
+                   {
+                    //alert(JSON.stringify(response.data));
+                    $scope.jsonAry=response.data;
+                   }
+            }
+            // ------------------------
+            $scope.doBlock=function(mail,index)
+            {
+                   // alert(email+"  "+index);
+                   if(confirm("R U Sure?")==false)
+                        return;
+                    
+                   var url="/profile-block-angualr?txtEmail="+mail;
+                   $http.get(url).then(fxAnmol,function(response){
+                        alert(response.data);
+                   });
+                   function fxAnmol(response)
+                   {
+                        //alert(response.data);
+                        $scope.fetchAllRecords();
+                   }
+            }
+            //---------------------------------------------
+            $scope.doResume=function(mail,index)
+            {
+                   // alert(email+"  "+index);
+                   if(confirm("R U Sure?")==false)
+                        return;
+                    
+                   var url="/profile-resume-angualr?txtEmail="+mail;
+                   $http.get(url).then(fxAnmol,function(response){
+                        alert(response.data);
+                   });
+                   function fxAnmol(response)
+                   {
+                        //alert(response.data);
+                        $scope.fetchAllRecords();
+                   }
+            }
+        })
+
+    </script>
+</head>
+<body ng-app="myModule" ng-controller="myController" ng-init=fetchAllRecords();>
+<hr>
+<center>
+    <table border="1" rules="all" width="500" height="300"> 
+        <tr bgcolor="blue">
+            <th width="70" height="70">Sr.No</th>
+            <th width="70" height="70">Email</th>
+            <th width="70" height="70">User Type</th>
+            <th width="70" height="70">Status</th>
+            <th width="70" height="70">
+               Block
+            </th>
+            <th width="70" height="40">
+               Resume
+            </th>
+        </tr>
+        <tr ng-repeat="obj in jsonAry">
+                <td>{{$index}}</td>
+                <td>{{obj.email}}</td>
+                <td>{{obj.utype}}</td>
+                <td>{{obj.status}}</td>
+                  
+                <td>
+                    <input type="button" value="Block" ng-click=doBlock(obj.email,$index);>
+                </td>
+                <td>
+                    <input type="button" value="Resume" ng-click=doResume(obj.email,$index);>
+                </td>
+
+        </tr>
+    </table>
+</center>
+</body>
+</html>

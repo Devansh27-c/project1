@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  
+  <script>
+    $(document).ready(function () {
+      $("#btnsign").click(function () {
+
+        var email = $("#txtEmail").val();
+        var pwd = $("#txtpwd").val();
+        var ut = $("#utype").val();alert(ut);
+        var url = "/signup?txtEmail=" + email + "&txtpwd=" + pwd + "&utype=" + ut;alert(url);
+        $.get(url, function (respkuch) {
+          alert(respkuch);
+        });
+
+      })
+      $("#btnlogin").click(function () {
+
+var email = $("#txtEmail1").val();
+var pwd = $("#txtpwd1").val();
+var ut=$("#utype").val();
+var url = "/chklogin?txtEmail1=" + email + "&txtpwd1=" + pwd ;
+$.getJSON(url,function(jsonAry){
+
+  if(jsonAry.length==0)
+  alert("invalid email/password");
+  else{
+    if(jsonAry[0].utype=="donor")
+    window.location.href="dash-donor.html";
+    else
+    if(jsonAry[0].utype=="needy")
+    window.location.replace("/dash-needy.html");
+  }
+
+})
+      
+    })
+  });
+
+
+  </script>
+  <style>
+    #a1{
+      width: 900px;
+      height: 700px;
+      border: 1px solid black;
+      float: left;
+    }
+    #log{
+      margin-left: 300px;
+      margin-top: -75px;
+    }
+    #btnlogin{
+      margin-left: 85px;
+      width: 150px;
+      
+    }
+    #head{
+      font-size: 1.25cm;
+      font-weight: bolder;
+      margin-top: 83px;
+      text-align: center;
+     }
+     #sm{
+      text-align: center;
+      margin-top: 10px;
+     }
+     #or{
+      margin: 45px;
+      text-align: center;
+     }
+     #a2{
+      float: left;
+      width: 618px;
+      height: 700px;
+      background-image: url(uploads/wp9764020.webp);
+     }
+     #t1{
+         font-size: 1.15cm;
+         font-weight: bolder;
+         color: white;
+         margin-top: 200px;
+         text-align: center;
+         
+     }
+     #t2{
+      text-align: center;
+      margin-top: 20px;
+      color: white;
+     }
+     #sign{
+      margin-left: 250px;
+      margin-top: 20px;
+      width: 150px;
+     }
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="uploads/66195124_1531903163613723_6185153755537735680_o-5ed0d0d5fc544ed2beb75c7e2c1519cc.jpg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      <span style="color:antiquewhite">Online Pharmacy </span>  
+      </a>
+    </div>
+  </nav>
+   
+   <div id="a1">
+    <div id="head" >Login To Your Account </div>
+    <div id="sm">Login Using Social Networks</div>
+    <div><button type="button" class="btn btn-link"><span class="bi bi-facebook"></span></button></div>
+
+    <div id="or">OR</div>
+
+   <div id="log">
+    <div class="bod">
+      <form method="post" class="row g-3" enctype="multipart/form-data">
+
+        <div class="col-md-6">
+          <label for="inputEmail" class="form-label"></label>
+          <input type="text" class="form-control" name="txtEmail1" id="txtEmail1" placeholder="Email">
+        </div>
+
+        <div class="col-md-6">
+        
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword" class="form-label"></label>
+          <input type="password" class="form-control" name="txtpwd1" id="txtpwd1" placeholder="Password">
+        </div>
+        <div class="footer">
+          <button type="button" class="btn btn-success"  id="btnlogin">Login</button>
+        </div>
+      </form>
+    </div>    
+   </div>
+    
+  </div>
+   <div id="a2">
+   <div id="t1">New Here?</div>
+   <div id="t2">Signup and Discover Our Website</div>
+   <div id="sign"></div>
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" id="sign" data-bs-target="#Modal1">
+    Signup
+  </button>
+
+  <div class="modal fade" id="Modal1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Signup</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" class="row g-3" enctype="multipart/form-data">
+
+            <div class="col-md-12">
+              <label for="inputEmail" class="form-label">Email</label>
+              <input type="text" class="form-control" name="txtEmail" id="txtEmail">
+            </div>
+
+            <div class="col-md-12">
+              <label for="inputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" name="txtpwd" id="txtpwd">
+            </div>
+            <div class="col-md-12">
+              <label for="inputState" class="form-label">Type</label>
+              <select name="utype" class="form-select" id="utype">
+                <option value="donor" >DONOR</option>
+                <option value="needy">NEEDY</option>
+                </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnsign">signup</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
